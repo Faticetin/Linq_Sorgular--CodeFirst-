@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DbOgrenciSinavModelStoreContainer" CdmEntityContainer="DbOgrenciSinavEntities1">
+    <EntitySetMapping Name="Dersler">
+      <EntityTypeMapping TypeName="DbOgrenciSinavModel.Dersler">
+        <MappingFragment StoreEntitySet="Dersler">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="DersAdı" ColumnName="DersAdı" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Notlar">
+      <EntityTypeMapping TypeName="DbOgrenciSinavModel.Notlar">
+        <MappingFragment StoreEntitySet="Notlar">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="OgrenciId" ColumnName="OgrenciId" />
+          <ScalarProperty Name="DersId" ColumnName="DersId" />
+          <ScalarProperty Name="Sınav1" ColumnName="Sınav1" />
+          <ScalarProperty Name="Sınav2" ColumnName="Sınav2" />
+          <ScalarProperty Name="Sınav3" ColumnName="Sınav3" />
+          <ScalarProperty Name="Ortalama" ColumnName="Ortalama" />
+          <ScalarProperty Name="Durum" ColumnName="Durum" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Ogrenci">
+      <EntityTypeMapping TypeName="DbOgrenciSinavModel.Ogrenci">
+        <MappingFragment StoreEntitySet="Ogrenci">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Ad" ColumnName="Ad" />
+          <ScalarProperty Name="Soyad" ColumnName="Soyad" />
+          <ScalarProperty Name="Fotograf" ColumnName="Fotograf" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="NotListe" FunctionName="DbOgrenciSinavModel.Store.NotListe">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DbOgrenciSinavModel.NotListe_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Ad_Soyad" ColumnName="Ad Soyad" />
+          <ScalarProperty Name="Sınav1" ColumnName="Sınav1" />
+          <ScalarProperty Name="Sınav2" ColumnName="Sınav2" />
+          <ScalarProperty Name="Sınav3" ColumnName="Sınav3" />
+          <ScalarProperty Name="Ortalama" ColumnName="Ortalama" />
+          <ScalarProperty Name="Durum" ColumnName="Durum" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="NotListe2" FunctionName="DbOgrenciSinavModel.Store.NotListe2">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DbOgrenciSinavModel.NotListe2_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Ad_Soyad" ColumnName="Ad Soyad" />
+          <ScalarProperty Name="DersAdı" ColumnName="DersAdı" />
+          <ScalarProperty Name="Sınav1" ColumnName="Sınav1" />
+          <ScalarProperty Name="Sınav2" ColumnName="Sınav2" />
+          <ScalarProperty Name="Sınav3" ColumnName="Sınav3" />
+          <ScalarProperty Name="Ortalama" ColumnName="Ortalama" />
+          <ScalarProperty Name="Durum" ColumnName="Durum" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

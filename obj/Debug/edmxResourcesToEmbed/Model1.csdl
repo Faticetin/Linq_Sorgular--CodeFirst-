@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DbOgrenciSinavModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Dersler">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DersAdı" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Notlar" Relationship="Self.FK_Notlar_Dersler" FromRole="Dersler" ToRole="Notlar" />
+  </EntityType>
+  <EntityType Name="Notlar">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OgrenciId" Type="Int32" />
+    <Property Name="DersId" Type="Int32" />
+    <Property Name="Sınav1" Type="Int16" />
+    <Property Name="Sınav2" Type="Int16" />
+    <Property Name="Sınav3" Type="Int16" />
+    <Property Name="Ortalama" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="Durum" Type="Boolean" />
+    <NavigationProperty Name="Dersler" Relationship="Self.FK_Notlar_Dersler" FromRole="Notlar" ToRole="Dersler" />
+    <NavigationProperty Name="Ogrenci" Relationship="Self.FK_Notlar_Ogrenci" FromRole="Notlar" ToRole="Ogrenci" />
+  </EntityType>
+  <EntityType Name="Ogrenci">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Ad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Soyad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Fotograf" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Notlar" Relationship="Self.FK_Notlar_Ogrenci" FromRole="Ogrenci" ToRole="Notlar" />
+  </EntityType>
+  <Association Name="FK_Notlar_Dersler">
+    <End Role="Dersler" Type="Self.Dersler" Multiplicity="0..1" />
+    <End Role="Notlar" Type="Self.Notlar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Dersler">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Notlar">
+        <PropertyRef Name="DersId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Notlar_Ogrenci">
+    <End Role="Ogrenci" Type="Self.Ogrenci" Multiplicity="0..1" />
+    <End Role="Notlar" Type="Self.Notlar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ogrenci">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Notlar">
+        <PropertyRef Name="OgrenciId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DbOgrenciSinavEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Dersler" EntityType="Self.Dersler" />
+    <EntitySet Name="Notlar" EntityType="Self.Notlar" />
+    <EntitySet Name="Ogrenci" EntityType="Self.Ogrenci" />
+    <AssociationSet Name="FK_Notlar_Dersler" Association="Self.FK_Notlar_Dersler">
+      <End Role="Dersler" EntitySet="Dersler" />
+      <End Role="Notlar" EntitySet="Notlar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Notlar_Ogrenci" Association="Self.FK_Notlar_Ogrenci">
+      <End Role="Ogrenci" EntitySet="Ogrenci" />
+      <End Role="Notlar" EntitySet="Notlar" />
+    </AssociationSet>
+    <FunctionImport Name="NotListe" ReturnType="Collection(DbOgrenciSinavModel.NotListe_Result)" />
+    <FunctionImport Name="NotListe2" ReturnType="Collection(DbOgrenciSinavModel.NotListe2_Result)" />
+  </EntityContainer>
+  <ComplexType Name="NotListe_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="String" Name="Ad_Soyad" Nullable="true" MaxLength="101" />
+    <Property Type="Int16" Name="Sınav1" Nullable="true" />
+    <Property Type="Int16" Name="Sınav2" Nullable="true" />
+    <Property Type="Int16" Name="Sınav3" Nullable="true" />
+    <Property Type="Decimal" Name="Ortalama" Nullable="true" Precision="5" Scale="2" />
+    <Property Type="Boolean" Name="Durum" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="NotListe2_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="String" Name="Ad_Soyad" Nullable="true" MaxLength="101" />
+    <Property Type="String" Name="DersAdı" Nullable="true" MaxLength="50" />
+    <Property Type="Int16" Name="Sınav1" Nullable="true" />
+    <Property Type="Int16" Name="Sınav2" Nullable="true" />
+    <Property Type="Int16" Name="Sınav3" Nullable="true" />
+    <Property Type="Decimal" Name="Ortalama" Nullable="true" Precision="5" Scale="2" />
+    <Property Type="Boolean" Name="Durum" Nullable="true" />
+  </ComplexType>
+</Schema>
